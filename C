@@ -1,0 +1,31 @@
+#include<stdio.h>
+
+int func(int n) {  // 순서도 3, 4를 실행하는 함수
+	int ret = 0;  // 거스름돈의 개수
+	if (n < 5)  // n == 2 or n == 4
+		return n / 2;
+	if (n % 5 == 0)
+		return n / 5;
+	else if ((n - ((n / 5) * 5)) % 2 == 0) {
+		ret += (n / 5);
+		n = n - ((n / 5) * 5);
+		return ret + (n / 2);
+	}
+	else {
+		ret += ((n / 5) - 1);
+		n = n - (((n / 5) - 1) * 5);
+		return ret + (n / 2);
+	}
+}
+
+int main(void) {
+	int n;
+	scanf("%d", &n);  // 순서도 1
+
+	if (n == 1 || n == 3)
+		printf("%d\n", -1);  // 순서도 2
+	else  // 순서도 3, 4
+		printf("%d\n", func(n));
+
+	return 0;
+}
