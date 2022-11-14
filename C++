@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+
+class nam {
+public:
+	int func();  // 순서도 3, 4를 실행하는 함수
+	int num;
+};
+
+int nam::func() {  // 순서도 3, 4를 실행하는 함수
+	int ret = 0;
+	if (num == 1 || num == 3)
+		return -1;
+	if (num < 5)  // num == 2 or num == 4
+		return num / 2;
+	if (num % 5 == 0)
+		return num / 5;
+	if ((num - ((num / 5) * 5)) % 2 == 0) {
+		ret += (num / 5);
+		num = num - ((num / 5) * 5);
+		return ret + (num / 2);
+	}
+	else {
+		ret += (num / 5 - 1);
+		num = (num - ((num / 5) - 1) * 5);
+		return ret + (num / 2);
+	}
+}
+
+int main(void) {
+	nam con;
+
+	cin >> con.num;
+	cout << con.func() << endl;
+
+	return 0;
+}
